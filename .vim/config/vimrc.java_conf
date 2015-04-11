@@ -1,0 +1,69 @@
+" this is the configuration for java
+"
+"author: joker23
+
+" set :make as the javac
+set makeprg=javac\ %
+set errorformat=%A:%f:%l:\ %m,%-Z%p^,%-C.%#
+
+"********************************************************
+">··>···>···>··· 	start commands 		>··>···>···>···*
+"********************************************************
+" commands
+command! Run			:!java %:r
+
+"********************************************************
+">··>···>···>··· 	custom mappings		>··>···>···>···*
+"********************************************************
+" mapping
+inoremap ;ss 	System.out.println();<ESC>1hi
+inoremap ;main 	public static void main(String[] args){<ESC>o}<ESC>O
+
+" scanner
+inoremap ;iint	in.nextInt();
+inoremap ;idou	in.nextDouble();
+inoremap ;ii	in.next();
+
+" BufferedReader
+inoremap ;line	in.readLine();
+inoremap ;split	st = new StringTokenizer(in.readLine());
+inoremap ;sint	parseInt(st.nextToken());
+inoremap ;sdou	parseDouble(st.nextToken());
+inoremap ;sstr	st.nextToken();
+inoremap ;ssho	parseShort(st.nextToken());
+inoremap ;slon	parseLong(st.nextToken());
+
+"********************************************************
+">··>···>···>··· Algorithm Implementation>··>···>···>···*
+"********************************************************
+nnoremap	;inits				:TSkeletonSetup ACMScanner.java<ESC>i
+nnoremap	;init				:TSkeletonSetup	ACMBFR.java<ESC>i
+
+" datastructure
+nnoremap 	;disjointset		Gko<ESC>:r! sed -n 3,27p ~/.vim/acm_templates/java/DisjointSet.java<CR>''
+nnoremap	;trie				Gko<ESC>:r! sed -n 2,57p ~/.vim/acm_templates/java/PrefixTree.java<CR>''
+nnoremap	;fenwick			Gko<ESC>:r! sed -n 3,51p ~/.vim/acm_tempates/java/FenwickTree.java<CR>''
+
+" Math Algorithms
+noremap 	;primesieve			Gko<ESC>:r! sed -n 10,74p ~/.algorithms/math/PrimeSieve.java<CR>
+nnoremap 	;totient			Gko<ESC>:r! sed -n 8,32p ~/.algorithms/math/Totient.java<CR>
+nnoremap 	;fib				Gko<ESC>:r! sed -n 17,42p ~/.algorithms/math/Fib0.java<CR>
+nnoremap 	;catalan			Gko<ESC>:r! sed -n 13,21p ~/.algorithms/math/Catalan.java<CR>
+nnoremap 	;gcd				Gko<ESC>:r! sed -n 15,17p ~/.algorithms/math/GCD.java<CR>
+nnoremap	;primefactors		Gko<ESC>:r! sed -n 5,26p ~/.algorithms/math/PrimeFactorization.java<CR>
+nnoremap	;primetest			Gko<ESC>:r! sed -n 10,24p ~/.algorithms/math/PrimeTest0.java<CR>
+
+" Geometry Algorithms
+nnoremap 	;convexhull			Gko<ESC>:r! sed -n 6,81p ~/.algorithms/geometry/ConvexHull.java<CR>
+nnoremap 	;dist				Gko<ESC>:r! sed -n 2,10p ~/.algorithms/geometry/Dist.java<CR>
+
+
+" graph Algorithms
+nnoremap 	;bellman			Gko<ESC>:r! sed -n 16,74p ~/.algorithms/graph/BellmanFord.java<CR>
+nnoremap 	;maxflow			Gko<ESC>:r! sed -n 5,33p ~/.algorithms/graph/EdmoundsKarp.java<CR>
+nnoremap 	;kmst				Gko<ESC>:r! sed -n 11,83p ~/.algorithms/graph/Kruskals.java<CR>
+nnoremap 	;floyd				Gko<ESC>:r! sed -n 3,15p ~/.algorithms/graph/Floyd.java<CR>
+
+" dp
+nnoremap 	;editdistance 		Gko<ESC>:r! sed -n 11,36 ~/.algorithms/dp/LevinsteinDistance.java<CR>
+nnoremap 	;matrixmult			Gko<ESC>:r! sed -n 12,31  ~/.algorithms/dp/MatrixMultiply.java<CR>

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Takes a screenshot
+scrot -d0 /tmp/lock1.png
+# Ofuscates the screen
+convert /tmp/lock1.png -blur 0x4 /tmp/lock2.png
+# Locks the computer
+i3lock -i /tmp/lock2.png ${@:1:($#-1)}
+# Turns off the screen
+xset dpms force standby

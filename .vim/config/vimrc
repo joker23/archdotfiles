@@ -1,0 +1,228 @@
+"This is my main rc file...has a lot of things..
+
+" vundle bundle stuff :)
+
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle
+" required!
+Bundle 'gmarik/vundle'
+
+" my bundles
+Bundle 'terryma/vim-multiple-cursors'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'xolox/vim-misc'
+"Bundle 'qiulin/TagHighlight'
+Bundle 'vim-scripts/better-whitespace'
+Bundle 'mbbill/undotree'
+Bundle 'Shougo/neocomplcache'
+Bundle 'vim-scripts/tlib'
+Bundle 'tomtom/tSkeletons'
+Bundle 'tomtom/tSkeleton_vim'
+" Brief help
+" :BundleList          - list configured bundles
+" :BundleInstall(!)    - install (update) bundles
+" :BundleSearch(!) foo - search (or refresh cache first) for foo
+" :BundleClean(!)      - confirm (or auto-approve) removal of unused bundles
+"
+" see :h vundle for more details or wiki for FAQ
+" NOTE: comments after Bundle commands are not allowed
+call vundle#end()
+
+"********************************************************
+" 				General Settings						*
+"********************************************************
+set t_Co=256
+
+set nocompatible
+" " Enable syntax highlighting
+syntax on
+" " Set normal backspace
+set backspace=2
+" " Allow unsaved buffers in background
+set hidden
+" " Show partial commands in the last line of the screen
+set showcmd
+" " Highlight searches
+set hlsearch
+" " show the search while typing
+set incsearch
+" " Disable modeline- security
+set nomodeline
+" " Use case insensitive search
+set ignorecase
+" " Except when using capital letters
+set smartcase
+" " Always display the status line, even if only one window is displayed
+set laststatus=2
+" " Set the command window height to 2 lines
+set cmdheight=2
+" " Make tabs 4 characters wide
+set tabstop=4
+" " Autoindents are 4 characters wide
+set shiftwidth=4
+" " Show position is statusline
+set ruler
+set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
+" " Set terminal title
+set title
+" " Disable capitalization check in spellcheck
+set spellcapcheck=""
+" " Do not show introduction message when starting vim
+set shortmess=I
+" " Enable filetype-specific plugins
+filetype on
+filetype plugin on
+" " Use filetype-specific automatic indentation
+filetype indent on
+" " line numbers
+set number
+" " indent lines
+set list
+set listchars=tab:\ \ ,trail:·,extends:…,precedes:…,nbsp:&
+"set listchars=tab:>·,trail:·,extends:…,precedes:…,nbsp:&
+" " cursor highlighting
+set cursorline
+" " show matching parenthesis
+set showmatch
+" " word wrap
+set linebreak
+" " spell checking
+" set spell
+set foldenable                  " Auto fold code
+
+" set tags=./.tags;
+"let g:easytags_dynamic_files = 1
+" set regexpengine=1
+
+let &colorcolumn="81,".join(range(120,999),",")
+
+"********************************************************
+" 				Formatting Setting						*
+"********************************************************
+" " word wrapping
+set wrap
+" "Use Autoindenting
+set autoindent
+" " set the colorscheme
+colorscheme molokai2
+
+"********************************************************
+"					Python Mappings{					*
+"********************************************************
+" " Convert indentation from spaces to tabs when opening a file.
+au Filetype python retab!
+" " Convert indentation from tabs to spaces when wring a file to disk, then
+" " immediately back when saving is done.
+au Filetype python au BufWritePre * :set expandtab
+au Filetype python au BufWritePre * :retab!
+au Filetype python au BufWritePost * :set noexpandtab!
+au Filetype python au BufWritePost * :retab!
+
+
+"********************************************************
+"						C Mappings						*
+"********************************************************
+augroup c
+	autocmd!
+	" Set compiler.
+	autocmd Filetype c set makeprg=gcc
+	" Execute result.
+	autocmd Filetype c nnoremap <buffer> <space>r :cd %:p:h<cr>:!clear;./a.out<cr>
+augroup END
+
+"********************************************************
+">··>···>···>··· Javascript Mapping		>··>···>···>·· ·*
+"********************************************************
+"TODO: add syntax support for .jade
+"TODO: add syntax support for .styl
+
+"********************************************************
+"						 ETC							*
+"********************************************************
+"  Quickly time out on keycodes, but never time out on mappings
+set notimeout ttimeout ttimeoutlen=200
+
+" easy write command
+nnoremap <space>w 		:w<cr>
+" easy make command
+nnoremap <space>m 		:make<cr>
+" easy run
+nnoremap <space>v 		:Run<cr>
+" mapping for quitting
+nnoremap <space>q 		:q<cr>
+" mapping for moving between buffers
+nnoremap <space>h		<c-w>h
+nnoremap <space>l		<c-w>l
+
+" Disable <f1>'s default help functionality.
+nnoremap <f1> <esc>
+inoremap <f1> <esc>
+" spelling
+" highlight clear SpellBad
+" highlight SpellBad cterm=underline
+
+" ETC key mapping
+" toggle between insert mode
+nnoremap ;o 			i
+inoremap ;o 			<Esc>
+" autoformatting
+inoremap ;fm 			<ESC>gg=Gi
+nnoremap ;fm			gg=G
+"}
+
+" autoclosing stuff
+noremap {      {}<Left>
+inoremap {<CR>  {<CR>}<Esc>O
+inoremap {{     {
+inoremap {}     {}
+
+inoremap        (  ()<Left>
+inoremap <expr> )  strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
+
+
+"********************************************************
+"				 NERDTree utilities						*
+"********************************************************
+nnoremap <space>e  	:NERDTreeToggle<CR>
+inoremap <C-e>		<ESC>:NERDTreeToggle<CR>i
+
+"********************************************************
+"				 Tag list utlities						*
+"********************************************************
+nnoremap <C-T>		:Tlist<CR>
+inoremap <C-t>		<ESC>:Tlist<CR>i
+let Tlist_Use_Right_Window   = 1
+
+"*******************************************************
+"				MultiSelect utilities				   *
+"*******************************************************
+let g:multi_cursor_next_key='<C-d>'
+
+"*******************************************************
+"				Whitepace  utilities				   *
+"*******************************************************
+let g:strip_whitespace_on_save = 1
+inoremap ;clean		<ESC>:StripWhitespace<CR>i
+nnoremap ;clean		:StripWhitespace<CR>
+
+
+"*******************************************************
+"				  Comment  utilities				   *
+"*******************************************************
+
+" Code folding options
+nmap <leader>f0 :set foldlevel=0<CR>
+nmap <leader>f1 :set foldlevel=1<CR>
+nmap <leader>f2 :set foldlevel=2<CR>
+nmap <leader>f3 :set foldlevel=3<CR>
+nmap <leader>f4 :set foldlevel=4<CR>
+nmap <leader>f5 :set foldlevel=5<CR>
+nmap <leader>f6 :set foldlevel=6<CR>
+nmap <leader>f7 :set foldlevel=7<CR>
+nmap <leader>f8 :set foldlevel=8<CR>
+nmap <leader>f9 :set foldlevel=9<CR>

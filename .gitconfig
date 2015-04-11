@@ -1,0 +1,11 @@
+[user]
+	name = joker23
+	email = zhangksteven@gmail.com
+[core]
+	editor = vim
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[alias]
+	d = difftool

@@ -1,0 +1,123 @@
+# script definitions for bash
+
+# constant definitions
+green='0;37m'
+red='0,31m'
+
+function initdb() {
+	mongod -dbpath ~/data
+}
+
+function shutdown() {
+sudo killall mongod
+sudo shutdown -h  now
+}
+
+function reboot() {
+sudo killall mongod
+sudo reboot
+}
+
+# suspend function
+function syshalt() {
+if [ -f ~/.i3/i3lock-blur ]; then
+	~/.i3/i3lock-blur
+fi
+
+systemctl suspend
+}
+
+# make pdf
+function pdfmake() {
+pdflatex $1
+rm *.aux
+rm *.log
+}
+
+# status
+# shows the status of all the git repositories on this computer
+function status() {
+for repo in `find ~ -type d -name '.git' ! -path "*/.vim/bundle/*"`
+do
+	# cd to the dir that contains .git/:
+	dir=`echo ${repo} | sed -e 's/\/.git/\//'`
+	cd ${dir}
+
+	color=$green
+
+	git remote update &> /dev/null
+
+	branchInfo=$(git status -s -b --ignore-submodules | grep -Eo "\[.*\]")
+	statusInfo=$(git status -s --ignore-submodules)
+
+	#git status -s -b
+	if [ -n "${branchInfo}" ]; then
+		color=$red
+	fi
+
+	if [ -n "$statusInfo" ]; then
+		color=$red
+	fi
+
+	echo -e "\E[${color}${dir} ${branchInfo}\E[0m"
+	git status -s --ignore-submodules
+
+	# cd back:
+	cd - &> /dev/null
+done
+}
+
+# acm
+# helper for competition programming
+function acm() {
+case "$1" in
+	"clean")
+		echo "MASTER! I will clean up for you :D"
+		rm -f *.java *.class Makefile a.out *.cpp
+		;;
+	"init")
+		echo "MASTER! I am making the files :] GOOD LUCK!"
+		cp ~/.lib/acmlib/Main.java .
+		cp ~/.lib/acmlib/Debug.java .
+		;;
+	"initcpp")
+		echo "MASTER! I am making the cpp files :D!"
+		cp ~/.lib/acmlib/Main.cpp .
+		;;
+	"inits")
+		echo "MASTER! Let's use scanners today :3"
+		cp ~/.lib/acmlib/Main1.java Main.java
+		cp ~/.lib/acmlib/Debug.java .
+		;;
+	"store")
+		cp Main.java $3/$2
+		echo "MASTER! I have stored $2 in $3"
+		;;
+	"use")
+		if [ "$2" = "scanner" ]; then
+			echo "MASTER! I am switching out Buffered Reader with Scanner!"
+			~/.lib/acmlib/toggleScanner
+		fi
+		;;
+esac
+}
+
+# topcoder stuff
+function topcoder() {
+case "$1" in
+	"init")
+		echo "MASTER! I am initializing topcoder arena!"
+		cd ~
+		wget http://community.topcoder.com/contest/arena/ContestAppletProd.jnlp
+		cp ~/.lib/topcoder/contestapplet.conf .
+
+		javaws ContestAppletProd.jnlp
+		;;
+	"clean")
+		mv contestapplet.conf .lib/topcoder
+		rm contestapplet.conf*
+		rm ContestAppletProd.jnlp
+		;;
+esac
+}
+

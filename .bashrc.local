@@ -1,0 +1,89 @@
+# this is my alias storage
+#
+# author: Steven Zhang
+
+#########################################
+#        QOL commands                   #
+#########################################
+# ls aliases for easier file browsing
+alias lls='ls -a'
+alias lsl='ls -l'
+alias llsl='ls -al'
+
+alias cls='clear;ls' 			# clears the screen then run ls
+# recursive remove
+alias rrm='rm -rf'
+
+# volume control
+alias vol='alsamixer -g'
+
+# internet
+alias wifi='wicd-curses'
+
+# untars tar.gz
+alias untar='tar -zxvf'
+
+# install using yaourt
+alias install='yaourt'
+
+# uninstall using pacman
+alias uninstall='sudo pacman -Rs'
+
+#########################################
+#		Maintenance						#
+#########################################
+# cleans the system
+alias cleanlatex='rm *.log *.aux'
+
+# cleans the Download file
+alias cleandl='rm -rf ~/Downloads'
+
+alias gdrive='~/gdrive/gdrive'
+
+#########################################
+#		Easy CDs						#
+#########################################
+# config cds
+alias usb='cd /media' 			# opens the usb file
+
+# rewinding
+alias ..='cd ..'
+alias ....='cd ../..'
+alias ......='cd ../../..'
+##########################################
+#        programming commands            #
+##########################################
+# cleans compiled files
+alias clean='rm -rf *.class *.swp'
+
+# android commands
+alias harra='adb kill-server && adb start-server'
+alias builda='ant clean && ant debug'
+
+###########################################
+#        System commands                  #
+###########################################
+# dual screen opt when the screen is on the right
+alias screenr='xrandr --auto --output VGA1 --mode 1920x1080 --right-of LVDS1'
+
+#suspend
+alias suspend='systemctl suspend'
+
+alias dvorak='setxkbmap dvorak'
+alias standard='setxkbmap us'
+
+# finds mounted volumes
+alias sniff="echo \"sniffing for mounted volumes!\" && sudo blkid"
+alias snort='sudo fdisk -l'
+
+# mounting
+# get the mounting parameters with the sniff command!
+alias mount='pmount'
+alias unmount='pumount'
+
+# some new path elements
+PATH=/home/steven/Android/adt-bundle-linux-x86-20131030/sdk/platform-tools:$PATH
+PATH=/home/steven/Android/adt-bundle-linux-x86-20131030/sdk/tools:$PATH
+PATH=/home/steven/android/android-studio/bin:$PATH
+
+export DBPATH=/home/steven/data

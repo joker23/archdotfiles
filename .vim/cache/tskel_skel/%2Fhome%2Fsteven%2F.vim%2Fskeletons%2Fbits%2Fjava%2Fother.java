@@ -1,0 +1,1 @@
+{'val': {'menu': 'other.java', 'bitfile': '/home/steven/.vim/skeletons/bits/java/other.java', 'cname': 'java', 'type': 'tskeleton', 'meta': {'menu': '', 'abbrev': '', 'before': '', 'here_before': '', 'type': 'tskeleton', 'msg': '', 'here_after': '', 'after': '', 'condition': 1}, 'text': 'this is nother'}}
