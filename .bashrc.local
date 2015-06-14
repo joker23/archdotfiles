@@ -66,6 +66,8 @@ alias builda='ant clean && ant debug'
 # dual screen opt when the screen is on the right
 alias screenr='xrandr --auto --output VGA1 --mode 1920x1080 --right-of LVDS1'
 
+alias movieoff="xset s 600 600"
+
 #suspend
 alias suspend='systemctl suspend'
 

@@ -18,20 +18,30 @@ sudo killall mongod
 sudo reboot
 }
 
+
+# prevent screen from blanking
+function movieon() {
+	xset -dpms
+	xset s noblank
+	xset s off
+}
+
 # suspend function
 function syshalt() {
-if [ -f ~/.i3/i3lock-blur ]; then
-	~/.i3/i3lock-blur
-fi
+	if [ -f ~/.i3/i3lock-blur ]; then
+		~/.i3/i3lock-blur
+	fi
 
-systemctl suspend
+	systemctl suspend
 }
+
+
 
 # make pdf
 function pdfmake() {
-pdflatex $1
-rm *.aux
-rm *.log
+	pdflatex $1
+	rm *.aux
+	rm *.log
 }
 
 # status

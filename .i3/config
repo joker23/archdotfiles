@@ -44,7 +44,7 @@ bindsym XF86AudioRaiseVolume exec amixer -q sset Master '1%+'
 bindsym XF86AudioMute exec amixer sset Master toggle
 
 # starts chromium
-bindsym $mod+w exec chromium
+bindsym $mod+w exec google-chrome-stable
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
