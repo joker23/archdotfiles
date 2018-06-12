@@ -21,3 +21,9 @@
 .pip
 .wicd/
 .gradle
+.ICEauthority
+.gnupg/
+.mozilla/
+.profile
+.sudo_as_admin_successful
+
