@@ -28,3 +28,5 @@
 .sudo_as_admin_successful
 .ssh/
 .vboxclient*
+.node-gyp
+.vscode
