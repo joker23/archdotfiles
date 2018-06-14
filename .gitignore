@@ -26,4 +26,5 @@
 .mozilla/
 .profile
 .sudo_as_admin_successful
-
+.ssh/
+.vboxclient*
